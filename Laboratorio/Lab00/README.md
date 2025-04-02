@@ -114,4 +114,4 @@ Se pide leer el código y comprender cómo se logra el funcionamiento del juego.
 
  **a)** En un archivo nuevo **tictactoe_gen.c** programar una implementación modificada del ejercicio anterior para hacer un tictactoe que utilice un tablero 4x4 donde el criterio para ganar es que haya 4 marcas iguales en línea en vez de 3.
 
-**b)** Modificar la implementación del apartado anterior (en el mismo archivo) para implementar un juego de tictactoe en un tablero 5x5. Si hicieron correctamente el apartado *a)* debería salir cambiando un solo símbolo del código. Si requieren más cambios, rehacer el apartado a)
+**b)** Modificar la implementación del apartado anterior (en el mismo archivo) para implementar un juego de tictactoe en un tablero 5x5. Si hicieron correctamente el apartado *a)* debería salir cambiando un solo símbolo del código. Si requieren más cambios, rehacer el apartado *a)*
