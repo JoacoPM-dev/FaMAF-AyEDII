@@ -3,7 +3,8 @@
 #include <stdbool.h>
 #include <assert.h>
 
-#define CELL_MAX (3*3-1)
+#define CELLS_LARGE 5
+#define CELL_MAX (CELLS_LARGE * CELLS_LARGE - 1)
 
 void print_sep(unsigned int length) 
 {
@@ -12,43 +13,44 @@ void print_sep(unsigned int length)
     printf("\n");
 }
 
-void print_board(char board[3][3])
+void print_board(char board[CELLS_LARGE][CELLS_LARGE])
 {
     int cell = 0;
-    print_sep(3);
-    for (int row = 0; row < 3; ++row) {
-        for (int column = 0; column < 3; ++column) {
-            printf("\t | %d: %c ", cell, board[row][column]);
+    print_sep(CELLS_LARGE);
+    for (int row = 0; row < CELLS_LARGE; ++row) 
+    {
+        for (int col = 0; col < CELLS_LARGE; ++col) 
+        {
+            printf("\t | %d: %c ", cell, board[row][col]);
             ++cell;
         }
         printf("\t | \n");
-        print_sep(3);
+        print_sep(CELLS_LARGE);
     }
 }
 
-char get_winner(char board[3][3])
+char get_winner(char board[CELLS_LARGE][CELLS_LARGE])
 {
     char winner = '-';
     char character;
 
-    // Check the rows. 
-    for (size_t r = 0; r < 3; r++)
-    {
+    // Check the rows.
+    for (size_t r = 0; r < CELLS_LARGE; r++) {
         bool eq_row = true;
         character = board[r][0];
-        for (size_t c = 0; c < 3; c++) {
+        for (size_t c = 0; c < CELLS_LARGE; c++) {
             eq_row = eq_row && character == board[r][c];
         }
         if (eq_row && character != '-') {
             winner = character;
         }
     }
-    
+
     // Check the columns.
-    for (size_t c = 0; c < 3; c++) {
+    for (size_t c = 0; c < CELLS_LARGE; c++) {
         bool eq_col = true;
         character = board[0][c];
-        for (size_t r = 0; r < 3; r++) {
+        for (size_t r = 0; r < CELLS_LARGE; r++) {
             eq_col = eq_col && character == board[r][c];
         } 
         if (eq_col && character != '-') {
@@ -59,7 +61,7 @@ char get_winner(char board[3][3])
     // Check the diagonals.
     bool eq_dig = true;
     character = board[0][0];
-    for (size_t i = 0; i < 3; i++) {
+    for (size_t i = 0; i < CELLS_LARGE; i++) {
         eq_dig = eq_dig && character == board[i][i]; 
     }
     if (eq_dig && character != '-') {
@@ -67,40 +69,43 @@ char get_winner(char board[3][3])
     }      
 
     eq_dig = true;
-    character = board[0][2];
-    for (size_t i = 0; i < 3; i++) {
-        eq_dig = eq_dig && character == board[i][2-i]; 
+    character = board[0][CELLS_LARGE-1];
+    for (size_t i = 0; i < CELLS_LARGE; i++) {
+        eq_dig = eq_dig && character == board[i][(CELLS_LARGE-1)-i]; 
     }
     if (eq_dig && character != '-') {
         winner = character;
     }    
-
+     
     return winner;
 }
 
-bool has_free_cell(char board[3][3])
+bool has_free_cell(char board[CELLS_LARGE][CELLS_LARGE])
 {
     bool free_cell = false;
-    for (size_t row = 0; row < 3; row++) {
-        for (size_t col = 0; col < 3; col++) {
+    for (size_t row = 0; row < CELLS_LARGE; row++) {
+        for (size_t col = 0; col < CELLS_LARGE; col++) {
             if (board[row][col] == '-') {
                 free_cell = true;
             }
         }    
+
     }
     return free_cell;
 }
 
-int main(void)
-{
-    char board[3][3] = {
-        { '-', '-', '-' },
-        { '-', '-', '-' },
-        { '-', '-', '-' }
-    };
+int main(void) {
     char turn = 'X';
     char winner = '-';
     int cell = 0;
+    char board[CELLS_LARGE][CELLS_LARGE];
+
+    // Init array in '-'.
+    for (size_t r = 0; r < CELLS_LARGE; r++) {
+        for (size_t c = 0; c < CELLS_LARGE; c++) {
+            board[r][c] = '-';
+        }
+    }
 
     while (winner == '-' && has_free_cell(board)) {
         print_board(board);
@@ -111,8 +116,8 @@ int main(void)
             exit(EXIT_FAILURE);
         }
         if (cell >= 0 && cell <= CELL_MAX) {
-            int row = cell / 3;
-            int colum = cell % 3;
+            int row = cell / CELLS_LARGE;
+            int colum = cell % CELLS_LARGE;
             if (board[row][colum] == '-') {
                 board[row][colum] = turn;
                 turn = turn == 'X' ? 'O' : 'X';
@@ -130,6 +135,5 @@ int main(void)
     } else {
         printf("Ganó %c\n", winner);
     }
-    
-    return EXIT_SUCCESS;
+    return 0;
 }
