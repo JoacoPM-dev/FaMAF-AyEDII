@@ -32,8 +32,7 @@ char get_winner(char board[3][3])
     char character;
 
     // Check the rows. 
-    for (size_t r = 0; r < 3; r++)
-    {
+    for (size_t r = 0; r < 3; r++) {
         bool eq_row = true;
         character = board[r][0];
         for (size_t c = 0; c < 3; c++) {
