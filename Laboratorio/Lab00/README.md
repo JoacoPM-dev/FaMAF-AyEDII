@@ -2,8 +2,6 @@
 
 #### Laboratorio 0: Repaso del lenguaje C
 
---- 
-
 ###### Objetivos
 
 1. Repaso de programación básica en lenguaje C.
