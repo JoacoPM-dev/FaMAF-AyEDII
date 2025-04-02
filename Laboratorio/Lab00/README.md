@@ -86,7 +86,7 @@ char board[3][3] = {
 
 Inicialmente todas las “celdas” del tablero se encuentran vacías, lo que se representa con el carácter **' - '**.  Los caracteres **'X'**  y **'O'** se utilizan para representar la cruz y el círculo, respectivamente. El juego permite al usuario llenar una celda del casillero con **'X'** y **'O'** de acuerdo a su turno, teniendo la posibilidad de elegir con un número entero en qué celda desea marcar el tablero. Las nueve celdas del tablero se encuentran numeradas de la siguiente forma:
 
-```shell
+```
 .................................................
 | 0: -          | 1: -          | 2: -          |
 .................................................
