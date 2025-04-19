@@ -1,6 +1,6 @@
 # Algoritmos y Estructura de Datos II
 
-#### Laboratorio 0: Repaso del lenguaje C
+### Laboratorio 0: Repaso del lenguaje C
 
 ###### Objetivos
 
