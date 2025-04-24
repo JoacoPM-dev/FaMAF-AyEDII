@@ -32,6 +32,7 @@ struct bound_data check_bound(int value, int arr[], unsigned int length)
             res.where = i;      // In this case, it takes the last occurrence.
         }
     }
+    
     return res;
 }
 
@@ -47,7 +48,7 @@ int main(void)
     int value;
     printf("Ingrese el valor a comparar:\n");
     scanf("%d", &value);
-
+    
     struct bound_data result = check_bound(value, a, ARRAY_SIZE);
 
     if (result.is_upperbound && result.exists) 
@@ -57,7 +58,6 @@ int main(void)
     else if (result.is_upperbound)
     {
         printf("El valor es cota superior\n");
-
     }
 
     if (result.is_lowerbound && result.exists) 
@@ -69,5 +69,6 @@ int main(void)
         printf("El valor es cota inferior\n");
 
     }
+    
     return EXIT_SUCCESS;
 }
